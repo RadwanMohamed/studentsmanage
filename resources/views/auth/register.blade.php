@@ -10,56 +10,212 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                         @csrf
-
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('File number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="file_number" type="text" class="form-control{{ $errors->has('file_number') ? ' is-invalid' : '' }}" name="file_number" value="{{ old('file_number') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('file_number'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('file_number') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('first_name'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('first_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="middle_name" class="col-md-4 col-form-label text-md-right">{{ __('Middle Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="middle_name" type="text" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" name="middle_name" value="{{ old('middle_name') }}" required autofocus>
+
+                                @if ($errors->has('middle_name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('middle_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
+
+                                @if ($errors->has('surname'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('surname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group row">
+                            <label for="personal_photo" class="col-md-4 col-form-label text-md-right">{{ __('Personal Photo') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="personal_photo" type="File" class="form-control{{ $errors->has('personal_photo') ? ' is-invalid' : '' }}" name="personal_photo" value="{{ old('personal_photo') }}" required>
+
+                                @if ($errors->has('personal_photo'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('personal_photo') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="date_of_birth" type="date" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" name="date_of_birth" value="{{ old('date_of_birth') }}" required>
+
+                                @if ($errors->has('date_of_birth'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('date_of_birth') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="nationality" class="col-md-4 col-form-label text-md-right">{{ __('Nationality') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
+                            <select class="form-control" name="nationality" id="exampleFormControlSelect1">
+                                    <option value="">1</option>
+                                </select>
+                                @if ($errors->has('nationality'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('nationality') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country of Birth') }}</label>
+
+                            <div class="col-md-6">
+                                  <select class="form-control" name="country" id="exampleFormControlSelect1">
+                                     <option>1</option>
+    
+                                </select>
+                                @if ($errors->has('country'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('country') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+
+
+
+
+
+
+
+                        
+
+
+
+                        <div class="form-group row">
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <div class="col-md-6">
+                               <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                  <label class="form-check-label" for="exampleRadios1">
+                                    Default radio
+                                  </label>
+                               </div>
+                               <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                  <label class="form-check-label" for="exampleRadios1">
+                                    Default radio
+                                  </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="passport_photo" class="col-md-4 col-form-label text-md-right">{{ __('Passport Photo') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="passport_photo" type="File" class="form-control{{ $errors->has('passport_photo') ? ' is-invalid' : '' }}" name="passport_photo" value="{{ old('passport_photo') }}" required>
+
+                                @if ($errors->has('passport_photo'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('passport_photo') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
+
+
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="graduation_degree" class="col-md-4 col-form-label text-md-right">{{ __('Graduation Degree') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="graduation_degree" type="text" class="form-control{{ $errors->has('graduation_degree') ? ' is-invalid' : '' }}" name="graduation_degree" value="{{ old('graduation_degree') }}" required autofocus>
+
+                                @if ($errors->has('graduation_degree'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('graduation_degree') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
+
+
+
+                         <div class="form-group row">
+                            <label for="graduation_photo" class="col-md-4 col-form-label text-md-right">{{ __('Graduation Photo') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="graduation_photo" type="File" class="form-control{{ $errors->has('graduation_photo') ? ' is-invalid' : '' }}" name="graduation_photo" value="{{ old('graduation_photo') }}" required multiple="multiple">
+
+                                @if ($errors->has('graduation_photo'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('graduation_photo') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    
+                    
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
