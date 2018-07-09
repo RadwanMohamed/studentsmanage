@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Http\Controllers\UploadController;
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -48,11 +49,24 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+        
+       return Validator::make($data,[
+            'file_number' => 'required|numeric|unique:users',
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'date_of_birth' => 'required|date',
+            'nationality' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'gender' => 'required|boolean',
+            'graduation_degree' => 'required|string|max:255',
+            'personal_photo' =>'required|image|mimes:jpeg,bmp,png|max:2048',
+            'passport_photo' =>'required|image|mimes:jpeg,bmp,png|max:2048',
+            'graduation_photos'=>'required',
+            'graduation_photos.*'=>'image|mimes:jpeg,bmp,png|max:2048'
         ]);
+         
+
     }
 
     /**
@@ -63,10 +77,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        
+        $user = User::create([
+            'file_number' => $data['file_number'],
+            'first_name' => $data['first_name'],
+            'middle_name' => $data['middle_name'],
+            'surname' => $data['surname'],
+            'date_of_birth' => $data['date_of_birth'],
+            'password' =>bcrypt($data['date_of_birth']),
+            'nationality' => $data['nationality'],
+            'country' => $data['country'],
+            'gender' => $data['gender'],
+            'graduation_degree' => $data['graduation_degree'], 
         ]);
+
+        $this->upload($data,$user->id); 
+        return $user;  
     }
 }

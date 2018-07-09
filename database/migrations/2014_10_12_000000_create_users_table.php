@@ -19,14 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('surname');
-            $table->string('personal_photo');
             $table->date('date_of_birth');
+            $table->string('password');
             $table->string('nationality');
             $table->string('country');
-            $table->boolean('gander');
-            $table->string('passport_image');
+            $table->boolean('gender');
             $table->string('graduation_degree');
-            $table->string('graduation_photos');
             $table->rememberToken();
             $table->timestamps();
         });

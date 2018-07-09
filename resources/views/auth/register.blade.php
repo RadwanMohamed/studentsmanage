@@ -1,14 +1,13 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Register an account') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}"  enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('File number') }}</label>
@@ -104,7 +103,9 @@
 
                             <div class="col-md-6">
                             <select class="form-control" name="nationality" id="exampleFormControlSelect1">
-                                    <option value="">1</option>
+                                @foreach($data as $country)
+                                    <option value="{{$country->nationality}}">{{$country->nationality}}</option>
+                                @endforeach    
                                 </select>
                                 @if ($errors->has('nationality'))
                                     <span class="invalid-feedback" role="alert">
@@ -119,8 +120,9 @@
 
                             <div class="col-md-6">
                                   <select class="form-control" name="country" id="exampleFormControlSelect1">
-                                     <option>1</option>
-    
+                                    @foreach($data as $country)
+                                     <option value="{{$country->en_short_name}}">{{$country->en_short_name}}</option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('country'))
                                     <span class="invalid-feedback" role="alert">
@@ -132,49 +134,38 @@
                         
 
 
-
-
-
-
-
-                        
-
-
-
                         <div class="form-group row">
                             <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
                                <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                  <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="0" checked>
                                   <label class="form-check-label" for="exampleRadios1">
-                                    Default radio
+                                    Male
                                   </label>
                                </div>
                                <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                  <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="1" >
                                   <label class="form-check-label" for="exampleRadios1">
-                                    Default radio
+                                    Female
                                   </label>
                                 </div>
                             </div>
                         </div>
 
+                         <div class="form-group row">
+                                    <label for="passport_photo" class="col-md-4 col-form-label text-md-right">{{ __('Passport Photo') }}</label>
 
+                                    <div class="col-md-6">
+                                        <input id="passport_photo" type="File" class="form-control{{ $errors->has('passport_photo') ? ' is-invalid' : '' }}" name="passport_photo" value="{{ old('passport_photo') }}" required>
 
-                        <div class="form-group row">
-                            <label for="passport_photo" class="col-md-4 col-form-label text-md-right">{{ __('Passport Photo') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="passport_photo" type="File" class="form-control{{ $errors->has('passport_photo') ? ' is-invalid' : '' }}" name="passport_photo" value="{{ old('passport_photo') }}" required>
-
-                                @if ($errors->has('passport_photo'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('passport_photo') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                        @if ($errors->has('passport_photo'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('passport_photo') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                             </div>
 
 
 
@@ -189,27 +180,34 @@
                                         <strong>{{ $errors->first('graduation_degree') }}</strong>
                                     </span>
                                 @endif
+
                             </div>
                         </div>
+
+
+
 
 
 
                          <div class="form-group row">
-                            <label for="graduation_photo" class="col-md-4 col-form-label text-md-right">{{ __('Graduation Photo') }}</label>
+                                    <label for="graduation_photos" class="col-md-4 col-form-label text-md-right">{{ __('Graduation Photo') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="graduation_photo" type="File" class="form-control{{ $errors->has('graduation_photo') ? ' is-invalid' : '' }}" name="graduation_photo" value="{{ old('graduation_photo') }}" required multiple="multiple">
+                                    <div class="col-md-6">
+                                        <input id="graduation_photos" type="File" class="form-control{{ $errors->has('graduation_photos') ? ' is-invalid' : '' }}" name="graduation_photos[]"  multiple="" required>
 
-                                @if ($errors->has('graduation_photo'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('graduation_photo') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                        @if ($errors->has('graduation_photos'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('graduation_photos') }}
+                                                {{ $errors->first('graduation_photos.0') }}
 
+                                                </strong>
+                                            </span>
+                                        @endif
+                                        
+                                            {{ $errors->first('graduation_photos.0') }}
 
-
+                                    </div>
+                             </div>
 
 
 
