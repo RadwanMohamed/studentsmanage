@@ -111,7 +111,14 @@
             } <br>
 
             just make sure that you have added ["X-Requested-With":"XMLHttpRequest"] in the header of the request
-            </p>
+            </p><br>
+
+            <h3> Tools & technologies </h3>
+            <h4> sublime</h4>
+            <h4> Linux os</h4>
+            <h4> Linux postman</h4>
+            <h4> laravel</h4>
+            <h4> JQ & Ajax</h4>
 
                
             
