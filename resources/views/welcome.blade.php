@@ -13,9 +13,6 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: black;
-                font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
@@ -43,6 +40,7 @@
 
             .content {
                 text-align: center;
+                margin-top: 500px;
             }
 
             .title {
@@ -89,8 +87,16 @@
 
             </p>
 
+            <h4> login data is</h4>
+            <p>
+                username = file number<br>
+                password = birth date
+            </p>
+
             <h3> the second part is the api for mobile apps</h3>
             <p> I built that part to help Mobile to make CRUD system in the students and its information</p> <br>
+
+
             <p>
                 the urls {<br>
                 //user<br>
