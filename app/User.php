@@ -27,4 +27,15 @@ class User extends Authenticatable
     protected $hidden = [
          'remember_token',
     ];
+    public function photos()
+    {
+        return $this->hasMany('App\UserPhotos');
+    }
+/*
+    protected static function boot(){
+        parent::boot();
+        static::deleting(function($user) {
+             $user->photos()->delete();
+        }
+    }*/
 }

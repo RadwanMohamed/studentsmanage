@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Students') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -75,5 +75,95 @@
             @yield('content')
         </main>
     </div>
+
+
+
+
+
 </body>
+
+
 </html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script>
+
+$( document ).on('click','.delph',function(e){
+    e.preventDefault();
+    button = $(this);
+    var div = button.attr('id');
+    var c =confirm('do you want delete it ?');
+    if(c == true){
+        $.ajax({
+            url : button.attr('href'),
+            type: 'GET',
+            dataType : 'JSON',
+            beforeSend :function(){
+            $('#results').removeClass().addClass('alert alert-info').html('deleting....');
+            },
+            success: function(data){
+            $('#results').removeClass().addClass('alert alert-success').html(data.msg);
+            $("."+div).remove();
+           
+            }
+        })
+    } 
+});
+
+
+$( document ).on('click','.deluser',function(e){
+    e.preventDefault();
+    button = $(this);
+    var div = button.attr('id');
+    var c =confirm('do you want delete it ?');
+    if(c == true){
+        $.ajax({
+            url : button.attr('href'),
+            type: 'GET',
+            dataType : 'JSON',
+            beforeSend :function(){
+            $('#results').removeClass().addClass('alert alert-info').html('deleting....');
+            },
+            success: function(data){
+            $('#results').removeClass().addClass('alert alert-success').html(data.msg);
+            location.reload();
+            }
+        })
+    } 
+});
+
+
+$(document).on('click','.edituser',function(e){
+    e.preventDefault();
+    button = $(this);
+    $.ajax({
+            url :button.attr('href'),
+            type: 'GET',
+            success: function (data) {
+                $('#container').html(data);
+            },
+            error : function(data){
+                console.log(data.error);
+
+            },
+
+        })
+});
+
+$(document).on('click','.edituserphoto',function(e){
+    e.preventDefault();
+    button = $(this);
+    $.ajax({
+            url :button.attr('href'),
+            type: 'GET',
+            success: function (data) {
+                $('#container').html(data);
+            },
+            error : function(data){
+                console.log(data.error);
+
+            },
+
+        })
+});
+</script>
